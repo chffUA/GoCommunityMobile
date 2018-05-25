@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { ProjectPage } from '../pages/project/project';
+import { SearchPage } from '../pages/search/search';
 import { AccountFormPage } from '../pages/accountForm/accountForm';
 import { ProjectFormPage } from '../pages/projectForm/projectForm';
 import { HomePage } from '../pages/home/home';
@@ -14,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Api } from '../providers/api';
 import { HttpModule } from '@angular/http';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HttpModule } from '@angular/http';
     ProjectPage,
     AccountFormPage,
     ProjectFormPage,
+    ProgressBarComponent,
+    SearchPage,
     HomePage,
     TabsPage
   ],
@@ -36,6 +40,7 @@ import { HttpModule } from '@angular/http';
     LoginPage,
     ProjectPage,
     AccountFormPage,
+    SearchPage,
     ProjectFormPage,
     HomePage,
     TabsPage

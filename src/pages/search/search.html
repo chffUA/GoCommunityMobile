@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Search for a Project
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form (ngSubmit)="searchT()">
+        <ion-item>
+            <ion-label color="primary" stacked>Search for?</ion-label>
+            <ion-input type="text" [(ngModel)]="query" name="query" placeholder="Write your query here"></ion-input>
+          </ion-item>
+      <button ion-button color="dark" type="submit">Go</button>
+      </form>
+
+      <ion-label>Results</ion-label>
+    <ion-item [hidden]="results.length > 0" text-wrap>
+      <p><strong>No results found!</strong></p>
+    </ion-item>
+    <button ion-item (click)="visitProject(p)" *ngFor="let p of results" text-wrap>
+      <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+    </button>
+</ion-content>

@@ -13,6 +13,7 @@ export class LoginPage {
   error: string;
   username: string;
   password: string;
+  tabBarElement: any;
 
   constructor(
     public alertController: AlertController,
@@ -23,6 +24,20 @@ export class LoginPage {
     public navParams: NavParams) {
 
       this.error = "";
+      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+      
+  }
+ 
+  ionViewWillEnter() {
+    if (this.tabBarElement!=null) {
+      this.tabBarElement.style.display = 'none';
+    }
+  }
+ 
+  ionViewWillLeave() {
+    if (this.tabBarElement!=null) {
+      this.tabBarElement.style.display = 'flex';
+    }
   }
 
   loginT() {
@@ -31,7 +46,7 @@ export class LoginPage {
     });
     //Show the loading indicator
     loader.present();
-
+    loader.dismiss();
         //only user: test/test
         if (this.username=='t' && this.password=='t') {
           this.nav.push(this.tabsPage, {id: 1});
@@ -40,8 +55,7 @@ export class LoginPage {
         } else {
           this.error = "Could not match credentials with any existing user.";
         }
-
-  loader.dismiss();
+  
   }
 
   login() {   

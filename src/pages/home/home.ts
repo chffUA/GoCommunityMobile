@@ -31,13 +31,11 @@ export class HomePage {
       this.id = navParams.get("id");
       this.populatePageT();
       this.error = '';
-      
 
-      //INCLUDE COMMENTS AND PROGRESS IN REST API
   }
 
   visitProject(p: any) {
-    this.nav.push(this.projectPage, {id: p.id});
+    this.nav.push(this.projectPage, {uid: this.id, project: p});
   }
 
   populatePageT() {
@@ -47,12 +45,12 @@ export class HomePage {
 
     loader.present();
 
-    let p1 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:2,milestones:[],createdOn:"2018-05-24"};
-    let p2 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:4,milestones:[{"1250.00":"test"},{"125.00":"test"}],createdOn:"2018-05-24"};
-    let p3 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:5,milestones:[],createdOn:"2018-05-24"};
-    let p4 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:7,milestones:[],createdOn:"2018-05-24"};
-    let p5 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:12,milestones:[],createdOn:"2018-05-24"};
-    let p6 = {endsOn:"2018-06-06",goal:"1000.00",name:"test",description:"test",id:16,milestones:[],createdOn:"2018-05-24"};
+    let p1 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:2,milestones:[],createdOn:"2012-05-24",comments:[]};
+    let p2 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:4,milestones:[{"1250.00":"test123"},{"125.00":"test"}],createdOn:"2017-05-24",comments:[]};
+    let p3 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:5,milestones:[],createdOn:"2018-04-24",comments:[]};
+    let p4 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:7,milestones:[],createdOn:"2018-05-23",comments:[]};
+    let p5 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:12,milestones:[],createdOn:"2018-05-14",comments:[]};
+    let p6 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:16,milestones:[],createdOn:"2018-07-07",comments:[]};
 
     this.ownData.push(p5);this.ownData.push(p6);
     this.followData.push(p4);this.followData.push(p3);

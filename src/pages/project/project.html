@@ -1,17 +1,29 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Project Page
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+    <p><strong>{{error}}</strong></p>
+    <ion-label>{{p.name}}</ion-label>
+
+    <p><strong>{{p.goal}}€ goal!</strong> {{p.progress}}€ donated.</p>
+    <progress-bar [progress]="progressBar"></progress-bar>
+    <p>{{time}}</p> 
+
+    <ion-label>Milestones</ion-label>
+    <ion-item [hidden]="p.milestones.length > 0" text-wrap>
+      <p><strong>No milestones have been set!</strong></p>
     </ion-item>
-  </ion-list>
+    <ion-item *ngFor="let m of milestoneList" text-wrap>
+      <p><strong>{{m.k}} - {{m.v}}</strong></p>
+    </ion-item>
+
+    <ion-label>Comments</ion-label>
+    <ion-item [hidden]="p.comments.length > 0" text-wrap>
+      <p><strong>No comments for this project.</strong></p>
+    </ion-item>
 </ion-content>
