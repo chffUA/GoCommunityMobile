@@ -10,6 +10,7 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 })
 export class ProjectPage {
 
+  user: any;
   uid: number;
   time: string;
   p: any;
@@ -17,6 +18,10 @@ export class ProjectPage {
   progressBar: number;
   milestoneList: any[];
   commentsList: any[];
+  mvalue: number;
+  mdesc: string;
+  donation: number;
+  cmt: string;
 
   constructor(public alertController: AlertController,
     public nav: NavController,
@@ -24,12 +29,44 @@ export class ProjectPage {
     public platform: Platform,
     public api: Api,
     public navParams: NavParams) {
-    this.uid = navParams.get("uid");
+    this.user = navParams.get("user");
+    this.uid = this.user.id;
     this.p = navParams.get("project");
     this.error = '';
     this.milestoneList = [];
     this.commentsList = [];
     this.populatePage();
+  }
+
+  isOwned() {
+    return this.uid==this.p.owner;
+  }
+
+  isFollowed() {
+    for (let i=0;i<this.user.follows.length;i++) {
+      if (this.user.follows[i]==this.p.id)
+        return true;
+    }
+    return false;
+  }
+
+  follow() {
+    console.log(this.uid+" follows "+this.p.id);
+  }
+
+  donate() {
+    if (this.donation!=null)
+      console.log("donates "+this.donation+" to project "+this.p.id);
+  }
+
+  addMilestone() {
+    if (this.mvalue!=null && this.mdesc!=null)
+      console.log("add mst: <"+this.mvalue+","+this.mdesc+">");
+  }
+
+  addComment() {
+    if (this.cmt!=null)
+      console.log("add cmt by "+this.uid+": "+this.cmt);
   }
 
   populatePage() {

@@ -1,7 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Your feed</ion-title>
-  </ion-navbar>
+    <ion-toolbar>
+        <ion-buttons right>
+          <button ion-button (click)="search()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title>
+          Food on Campus
+        </ion-title>
+      </ion-toolbar>
 </ion-header>
 
 <ion-content padding>

@@ -10,8 +10,9 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 })
 export class HomePage {
 
-  id: number;
+  uid: number;
   error: string;
+  user: any;
   ownData: any[];
   followData: any[];
   popularData: any[];
@@ -25,17 +26,19 @@ export class HomePage {
     public api: Api,
     public navParams: NavParams) {
 
+      this.user = navParams.get("user");
+      this.uid = this.user.id;
       this.ownData = [];
       this.followData = [];
       this.popularData = [];
-      this.id = navParams.get("id");
+      
       this.populatePageT();
       this.error = '';
 
   }
 
   visitProject(p: any) {
-    this.nav.push(this.projectPage, {uid: this.id, project: p});
+    this.nav.push(this.projectPage, {user: this.user, project: p});
   }
 
   populatePageT() {
@@ -45,12 +48,12 @@ export class HomePage {
 
     loader.present();
 
-    let p1 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:2,milestones:[],createdOn:"2012-05-24",comments:[]};
-    let p2 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:4,milestones:[{"1250.00":"test123"},{"125.00":"test"}],createdOn:"2017-05-24",comments:[]};
-    let p3 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:5,milestones:[],createdOn:"2018-04-24",comments:[]};
-    let p4 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:7,milestones:[],createdOn:"2018-05-23",comments:[]};
-    let p5 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:12,milestones:[],createdOn:"2018-05-14",comments:[]};
-    let p6 = {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:16,milestones:[],createdOn:"2018-07-07",comments:[]};
+    let p1 = {endsOn:"2018-06-06",goal:1000.00,owner:1,progress:245.78,name:"test",description:"test",id:2,milestones:[],createdOn:"2012-05-24",comments:[]};
+    let p2 = {endsOn:"2018-06-06",goal:1000.00,owner:2,progress:245.78,name:"test",description:"test",id:4,milestones:[{"1250.00":"test123"},{"125.00":"test"}],createdOn:"2017-05-24",comments:[]};
+    let p3 = {endsOn:"2018-06-06",goal:1000.00,owner:2,progress:245.78,name:"test",description:"test",id:5,milestones:[],createdOn:"2018-04-24",comments:[]};
+    let p4 = {endsOn:"2018-06-06",goal:1000.00,owner:1,progress:245.78,name:"test",description:"test",id:7,milestones:[],createdOn:"2018-05-23",comments:[]};
+    let p5 = {endsOn:"2018-06-06",goal:1000.00,owner:2,progress:245.78,name:"test",description:"test",id:12,milestones:[],createdOn:"2018-05-14",comments:[]};
+    let p6 = {endsOn:"2018-06-06",goal:1000.00,owner:1,progress:245.78,name:"test",description:"test",id:16,milestones:[],createdOn:"2018-07-07",comments:[]};
 
     this.ownData.push(p5);this.ownData.push(p6);
     this.followData.push(p4);this.followData.push(p3);
@@ -69,48 +72,33 @@ export class HomePage {
     //Show the loading indicator
     loader.present();
 
-    this.api.getUser(this.id).then(
-      data => {
-        
-        if (data) {
-
-          for (let p in data.owns) {
-            this.api.getProject(p).then(
-              odata => {
-                if (odata) this.ownData.push(odata);
-                else this.error = 'Couldn\'t retrieve owned project information.';
-              }
-            );
-          }
-
-          for (let p in data.follows) {
-            this.api.getProject(p).then(
-              fdata => {
-                if (fdata) this.followData.push(fdata);
-                else this.error = 'Couldn\'t retrieve followed project information.';
-              }
-            );
-          }
-
-          this.api.getPopular().then(
-            pdata => {
-              if (pdata) this.popularData = pdata.list;
-              else this.error = 'Couldn\'t retrieve popular project information.';
-            }
-          );
-
-        } else {
-          this.error = 'Couldn\'t connect to the database.';
+    for (let p in this.user.owns) {
+      this.api.getProject(p).then(
+        odata => {
+          if (odata) this.ownData.push(odata);
+          else this.error = 'Couldn\'t retrieve owned project information.';
         }
+      );
+    }
 
-        loader.dismiss();
-      },
-      error => {
-        //Hide the loading indicator
-        loader.dismiss();
-        this.error = 'Couldn\'t connect to the database.';
+    for (let p in this.user.follows) {
+      this.api.getProject(p).then(
+        fdata => {
+          if (fdata) this.followData.push(fdata);
+          else this.error = 'Couldn\'t retrieve followed project information.';
+        }
+      );
+    }
+
+    this.api.getPopular().then(
+      pdata => {
+        if (pdata) this.popularData = pdata.list;
+        else this.error = 'Couldn\'t retrieve popular project information.';
       }
     );
+
+    loader.dismiss();
+
   }
 
 }

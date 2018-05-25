@@ -12,6 +12,7 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 export class SearchPage {
 
   id: any;
+  user: any;
   query: string;
   results: any[];
   projectPage = ProjectPage;
@@ -23,14 +24,14 @@ export class SearchPage {
     public api: Api,
     public navParams: NavParams) {
 
-    this.id = navParams.get("id");
-    console.log(this.id);
+    this.user = navParams.get("user");
+    this.id = this.user.id;
     this.results = [];
 
   }
 
   visitProject(p: any) {
-    this.nav.push(this.projectPage, {uid: this.id, project: p});
+    this.nav.push(this.projectPage, {user: this.user, project: p});
   }
 
   searchT() {

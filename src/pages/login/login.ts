@@ -47,9 +47,12 @@ export class LoginPage {
     //Show the loading indicator
     loader.present();
     loader.dismiss();
+
+    let u = {id: 1, owns: [2,3,4], follows: [2,5,12]};
+
         //only user: test/test
         if (this.username=='t' && this.password=='t') {
-          this.nav.push(this.tabsPage, {id: 1});
+          this.nav.push(this.tabsPage, {user: u});
         } else if (this.username==null || this.password==null || this.username=='' || this.password=='') {
           this.error = "Both fields are required.";
         } else {
@@ -73,7 +76,18 @@ export class LoginPage {
         
         if (data) {
           if (data.status==="true") {
-            this.nav.push(this.tabsPage, {id: data.id});
+            this.api.getUser(data.id).then(
+              udata => {               
+                if (udata) {
+                  this.nav.push(this.tabsPage, {user: udata});
+                } else {
+                    this.error = 'Couldn\'t connect to the database.';
+                }
+              },
+              error => {
+                this.error = 'Couldn\'t connect to the database.';
+              });
+            
           } else if (data.status==="false") {
             this.error = 'Authentication failed. Perhaps the username or password are misspelled?';
           } else {

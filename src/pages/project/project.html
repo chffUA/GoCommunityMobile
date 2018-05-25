@@ -14,6 +14,16 @@
     <progress-bar [progress]="progressBar"></progress-bar>
     <p>{{time}}</p> 
 
+    <form (ngSubmit)="donate()" [hidden]="isOwned()">
+      <ion-item>
+        <ion-label color="primary" stacked>Donation value (€)</ion-label>
+        <ion-input type="number" [(ngModel)]="donation" name="donation" placeholder="Donation value here"></ion-input>
+      </ion-item>
+      <button ion-button color="dark" type="submit">Donate</button>
+    </form>
+
+    <button ion-button (click)="follow()" color="dark" [hidden]="isFollowed() || isOwned()">Follow</button>
+
     <ion-label>Milestones</ion-label>
     <ion-item [hidden]="p.milestones.length > 0" text-wrap>
       <p><strong>No milestones have been set!</strong></p>
@@ -22,8 +32,28 @@
       <p><strong>{{m.k}} - {{m.v}}</strong></p>
     </ion-item>
 
+    <form (ngSubmit)="addMilestone()" [hidden]="!isOwned()">
+      <ion-item>
+          <ion-label color="primary" stacked>Milestone value (€)</ion-label>
+          <ion-input type="number" [(ngModel)]="mvalue" name="mvalue" placeholder="Milestone value here"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" stacked>Brief milestone description</ion-label>
+            <ion-input type="text" [(ngModel)]="mdesc" name="mdesc" placeholder="Milestone text here"></ion-input>
+          </ion-item>
+    <button ion-button color="dark" type="submit">Add</button>
+    </form>
+
     <ion-label>Comments</ion-label>
     <ion-item [hidden]="p.comments.length > 0" text-wrap>
       <p><strong>No comments for this project.</strong></p>
     </ion-item>
+
+    <form (ngSubmit)="addComment()">
+      <ion-item>
+          <ion-label color="primary" stacked>Comment text</ion-label>
+          <ion-input type="text" [(ngModel)]="cmt" name="cmt" placeholder="Write a comment here"></ion-input>
+        </ion-item>
+    <button ion-button color="dark" type="submit">Submit</button>
+    </form>
 </ion-content>

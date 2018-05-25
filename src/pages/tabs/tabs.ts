@@ -12,13 +12,13 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 })
 export class TabsPage {
 
-  id: any;
+  user: any;
 
   tab1Root = HomePage;
   tab2Root = SearchPage;
   tab3Root = LoginPage;
 
   constructor(navParams: NavParams) {
-    this.id = {id: navParams.get("id")};
+    this.user = {user: navParams.get("user")};
   }
 }
