@@ -4,7 +4,9 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
-import { ContactPage } from '../pages/contact/contact';
+import { ProjectPage } from '../pages/project/project';
+import { AccountFormPage } from '../pages/accountForm/accountForm';
+import { ProjectFormPage } from '../pages/projectForm/projectForm';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -17,7 +19,9 @@ import { HttpModule } from '@angular/http';
   declarations: [
     MyApp,
     LoginPage,
-    ContactPage,
+    ProjectPage,
+    AccountFormPage,
+    ProjectFormPage,
     HomePage,
     TabsPage
   ],
@@ -30,7 +34,9 @@ import { HttpModule } from '@angular/http';
   entryComponents: [
     MyApp,
     LoginPage,
-    ContactPage,
+    ProjectPage,
+    AccountFormPage,
+    ProjectFormPage,
     HomePage,
     TabsPage
   ],

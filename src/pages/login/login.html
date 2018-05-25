@@ -7,5 +7,16 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button color="dark" (click)="buttonClick()">Login</button>
+    <form (ngSubmit)="loginT()">
+    <ion-item>
+        <ion-label color="primary" stacked>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Enter username here"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary" stacked>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Enter password here"></ion-input>
+        </ion-item>
+  <button ion-button color="dark" type="submit">Login</button>
+  </form>
+  <p><strong>{{error}}</strong></p>
 </ion-content>

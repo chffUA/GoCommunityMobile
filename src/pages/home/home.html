@@ -1,17 +1,33 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Your feed</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <p><strong>{{error}}</strong></p>
+
+  <ion-label>Your projects</ion-label>
+  <ion-item [hidden]="ownData.length > 0" text-wrap>
+    <p><strong>You haven't started any projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of ownData" text-wrap>
+    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+  </button>
+
+  <ion-label>Followed projects</ion-label>
+  <ion-item [hidden]="followData.length > 0" text-wrap>
+    <p><strong>You haven't followed any projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of followData" text-wrap>
+    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+  </button>
+
+  <ion-label>Popular projects</ion-label>
+  <ion-item [hidden]="popularData.length > 0" text-wrap>
+    <p><strong>There aren't any other projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of popularData" text-wrap>
+    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+  </button>
 </ion-content>

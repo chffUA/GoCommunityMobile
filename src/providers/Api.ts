@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class Api {
 
-  private endpoint = "https://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
+  private endpoint = "http://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
 
     constructor(public http: Http) {
         console.log('Provider online');
@@ -14,6 +14,7 @@ export class Api {
 
     getUser(arg: any): Promise<any> {
       let url: string = this.endpoint+"/user/"+arg;
+      console.log(url);
       return this.http.get(url)
         .toPromise()
         .then(this.extractData)
@@ -22,14 +23,16 @@ export class Api {
 
     getProject(arg: any): Promise<any> {
         let url: string = this.endpoint+"/project/"+arg;
+        console.log(url);
         return this.http.get(url)
           .toPromise()
           .then(this.extractData)
           .catch(this.handleError);
       }
 
-    getPopular(arg: any): Promise<any> {
+    getPopular(): Promise<any> {
         let url: string = this.endpoint+"/popular";
+        console.log(url);
         return this.http.get(url)
         .toPromise()
         .then(this.extractData)
@@ -37,7 +40,8 @@ export class Api {
     }
 
     getLoginResult(user: string, pword: string): Promise<any> {
-      let url: string = this.endpoint+"/login?user="+user+"&pword="+pword;
+      let url: string = this.endpoint+"/login?user="+user+"&pword="+pword;~
+      console.log(url);
       return this.http.get(url)
       .toPromise()
       .then(this.extractData)
