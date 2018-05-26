@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-    <form (ngSubmit)="loginT()">
+    <form (ngSubmit)="login()">
     <ion-item>
         <ion-label color="primary" stacked>Username</ion-label>
         <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Enter username here"></ion-input>
@@ -19,4 +19,6 @@
   <button ion-button color="dark" type="submit">Login</button>
   </form>
   <p><strong>{{error}}</strong></p>
+  <p><strong>No account? Create one for free here!</strong></p>
+  <button ion-button (click)="newAccount()" color="dark">New account</button>
 </ion-content>

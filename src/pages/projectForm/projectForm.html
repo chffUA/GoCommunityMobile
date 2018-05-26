@@ -1,17 +1,29 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Project Creation
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+  <form (ngSubmit)="createT()">
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+        <ion-label color="primary" stacked>Your project's name</ion-label>
+        <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Enter your project's name here"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>Project description</ion-label>
+        <ion-input type="text" [(ngModel)]="desc" name="desc" placeholder="Enter a description here"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary" stacked>Its goal (€)</ion-label>
+          <ion-input type="number" [(ngModel)]="goal" name="goal" placeholder="Enter your goal here"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label color="primary" stacked>Its expiration date (YYYY-MM-DD)</ion-label>
+          <ion-input type="text" [(ngModel)]="date" name="date" placeholder="Enter expiration date here"></ion-input>
+        </ion-item>
+  <button ion-button color="dark" type="submit">Done</button>
+  </form>
 </ion-content>

@@ -10,7 +10,13 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 })
 export class ProjectFormPage {
 
-  id: any;
+  user: any;
+  uid: number;
+  name: string;
+  desc: string;
+  goal: number;
+  date: string;
+  homePage = HomePage;
 
   constructor(public alertController: AlertController,
     public nav: NavController,
@@ -18,8 +24,20 @@ export class ProjectFormPage {
     public platform: Platform,
     public api: Api,
     public navParams: NavParams) {
-    this.id = navParams.get("id");
-    console.log(this.id);
+
+      this.user = navParams.get("user");
+      this.uid = this.user.id;
+  }
+
+  createT() {
+    console.log(this.name,this.desc,this.goal,this.date,this.uid);
+    if (this.name!=null && this.desc!=null && this.goal!=null && this.date!=null) {
+        this.nav.push(this.homePage, {user: this.user});
+      }
+  }
+
+  create() {
+
   }
 
 }

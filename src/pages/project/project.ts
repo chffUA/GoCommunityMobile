@@ -73,8 +73,9 @@ export class ProjectPage {
     this.createTimeString();    
     this.progressBar = Math.floor(this.p.progress/this.p.goal * 100);
     for (let i=0;i<this.p.milestones.length;i++) {
-      let key = Object.keys(this.p.milestones[i])[0]+"€";
-      let val = Object.values(this.p.milestones[i])[0];
+      let obj = this.p.milestones[i];
+      let key = Object.keys(obj)[0]+"€";
+      let val = obj[Object.keys(obj)[0]];
       this.milestoneList.push({k: key, v: val});
     }
     //comments after

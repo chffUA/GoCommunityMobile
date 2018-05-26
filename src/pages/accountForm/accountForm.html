@@ -1,17 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Account Creation
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+  <form (ngSubmit)="createT()">
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+        <ion-label color="primary" stacked>Your account's name</ion-label>
+        <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Enter your name here"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary" stacked>The username you'll login with</ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Enter your username here"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary" stacked>Your password</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Enter your password here"></ion-input>
+        </ion-item>
+  <button ion-button color="dark" type="submit">Done</button>
+  </form>
 </ion-content>

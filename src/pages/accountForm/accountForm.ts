@@ -10,7 +10,11 @@ import { AlertController, LoadingController, NavController, Platform, NavParams 
 })
 export class AccountFormPage {
 
-  id: any;
+  name: string;
+  username: string;
+  password: string;
+  tabsPage = TabsPage;
+  tabBarElement: any;
 
   constructor(public alertController: AlertController,
     public nav: NavController,
@@ -18,8 +22,34 @@ export class AccountFormPage {
     public platform: Platform,
     public api: Api,
     public navParams: NavParams) {
-    this.id = navParams.get("id");
-    console.log(this.id);
+
+      this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+
+  }
+
+ionViewWillEnter() {
+  if (this.tabBarElement!=null) {
+    this.tabBarElement.style.display = 'none';
+  }
+}
+
+ionViewWillLeave() {
+  if (this.tabBarElement!=null) {
+    this.tabBarElement.style.display = 'flex';
+  }
+}
+
+  create() {
+
+  }
+
+  createT() {
+    console.log(this.name,this.username,this.password);
+    if (this.name!=null && this.username!=null && this.password!=null) {
+      let x = {id: 1};
+      let u = {id: 1, owns: [2,3,4], follows: [2,5,12]};
+      this.nav.push(this.tabsPage, {user: u});
+    }
   }
 
 }

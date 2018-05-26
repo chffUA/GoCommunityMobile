@@ -1,12 +1,12 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons right>
-          <button ion-button (click)="search()">
+          <button ion-button (click)="refresh()">
             <ion-icon name="refresh"></ion-icon>
           </button>
         </ion-buttons>
         <ion-title>
-          Food on Campus
+          Your GoCommunity Feed
         </ion-title>
       </ion-toolbar>
 </ion-header>
@@ -19,7 +19,7 @@
     <p><strong>You haven't started any projects!</strong></p>
   </ion-item>
   <button ion-item (click)="visitProject(p)" *ngFor="let p of ownData" text-wrap>
-    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+    <p><strong>{{p.name}} - {{p.progress}}€ / {{p.goal}}€ - Ends on {{p.endsOn}}</strong></p>
   </button>
 
   <ion-label>Followed projects</ion-label>
@@ -27,7 +27,7 @@
     <p><strong>You haven't followed any projects!</strong></p>
   </ion-item>
   <button ion-item (click)="visitProject(p)" *ngFor="let p of followData" text-wrap>
-    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+    <p><strong>{{p.name}} - {{p.progress}}€ / {{p.goal}}€ - Ends on {{p.endsOn}}</strong></p>
   </button>
 
   <ion-label>Popular projects</ion-label>
@@ -35,6 +35,6 @@
     <p><strong>There aren't any other projects!</strong></p>
   </ion-item>
   <button ion-item (click)="visitProject(p)" *ngFor="let p of popularData" text-wrap>
-    <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+    <p><strong>{{p.name}} - {{p.progress}}€ / {{p.goal}}€ - Ends on {{p.endsOn}}</strong></p>
   </button>
 </ion-content>

@@ -14,6 +14,7 @@ export class SearchPage {
   id: any;
   user: any;
   query: string;
+  error: string;
   results: any[];
   projectPage = ProjectPage;
 
@@ -26,6 +27,7 @@ export class SearchPage {
 
     this.user = navParams.get("user");
     this.id = this.user.id;
+    this.error = '';
     this.results = [];
 
   }
@@ -34,27 +36,23 @@ export class SearchPage {
     this.nav.push(this.projectPage, {user: this.user, project: p});
   }
 
-  searchT() {
-
+  search() {
     let loader = this.loadingCtrl.create({
       content: "Retrieving information..."
     });
-    //Show the loading indicator
+
     loader.present();
 
     this.results = [];
 
-    let projs = [{endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"abcdt",description:"test",id:5,milestones:[],createdOn:"2018-04-24",comments:[]},
-    {endsOn:"2018-06-06",goal:1000.00,progress:245.78,name:"test",description:"test",id:7,milestones:[],createdOn:"2018-05-23",comments:[]}];
-  
-    for (let i=0;i<projs.length;i++) {
-      if (projs[i].name.includes(this.query)) {
-        this.results.push(projs[i]);
+    this.api.getSearch(this.query).then(
+      data => {
+        if (data) this.results = data.list;
+        else this.error = 'Couldn\'t retrieve search results.';
       }
-    }
+    );
 
     loader.dismiss();
-  
   }
 
 }

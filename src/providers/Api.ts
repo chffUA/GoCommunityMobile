@@ -39,8 +39,17 @@ export class Api {
         .catch(this.handleError);
     }
 
+    getSearch(arg: any): Promise<any> {
+      let url: string = this.endpoint+"/search/"+arg;
+      console.log(url);
+      return this.http.get(url)
+      .toPromise()
+      .then(this.extractData)
+      .catch(this.handleError);
+  }
+
     getLoginResult(user: string, pword: string): Promise<any> {
-      let url: string = this.endpoint+"/login?user="+user+"&pword="+pword;~
+      let url: string = this.endpoint+"/login?user="+user+"&pword="+pword;
       console.log(url);
       return this.http.get(url)
       .toPromise()
