@@ -12,6 +12,15 @@ export class Api {
         console.log('Provider online');
     }
 
+    /*postAccount(body: any): Promise<any> {
+      let url: string = this.endpoint+"/createAccount";
+      console.log(url);
+      return this.http.post(url, body, {"Content-type": "application-json"})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }*/
+
     getUser(arg: any): Promise<any> {
       let url: string = this.endpoint+"/user/"+arg;
       console.log(url);

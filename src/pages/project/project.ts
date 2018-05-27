@@ -38,6 +38,10 @@ export class ProjectPage {
     this.populatePage();
   }
 
+  ionViewWillEnter() {
+    this.error = '';
+  }
+
   isOwned() {
     return this.uid==this.p.owner;
   }

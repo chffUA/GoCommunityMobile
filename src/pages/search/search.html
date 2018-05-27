@@ -1,25 +1,33 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
+    <ion-title class="center">      
       Search for a Project
+      <ion-icon name="search"></ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
     <form (ngSubmit)="search()">
+        <p class="center error" [hidden]="error == ''"><strong>{{error}}</strong></p>
         <ion-item>
-            <ion-label color="primary" stacked>Search for?</ion-label>
+            <ion-label color="primary" stacked id="s">Search for?</ion-label>
             <ion-input type="text" [(ngModel)]="query" name="query" placeholder="Write your query here"></ion-input>
           </ion-item>
-      <button ion-button color="dark" type="submit">Go</button>
+          <div class="centerbtn">
+      <button ion-button color="dark" id="gobtn" type="submit">Go</button>
+      </div>
       </form>
 
-      <ion-label>Results</ion-label>
+      <ion-label class="title">Results</ion-label>
     <ion-item [hidden]="results.length > 0" text-wrap>
       <p><strong>No results found!</strong></p>
     </ion-item>
     <button ion-item (click)="visitProject(p)" *ngFor="let p of results" text-wrap>
-      <p><strong>{{p.name}} - {{p.goal}}€ goal - Ends on {{p.endsOn}}</strong></p>
+        <p> <ion-icon name="cube" class="pad"></ion-icon>
+          <strong> <span class="projtitle">{{p.name}}</span> - 
+            <span class="projmoney">{{p.progress}}€</span> / 
+            <span class="projmoney">{{p.goal}}€</span> - 
+            Ends on <span class="projdate">{{p.endsOn}}</span></strong></p>
     </button>
 </ion-content>

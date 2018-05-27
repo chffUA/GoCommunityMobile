@@ -1,3 +1,77 @@
 page-project {
 
+    .show-back-button {
+        display: none!important;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .centerbtn {
+        text-align:center;
+        margin:auto;
+        width: calc(100% - 14px);
+    }
+    
+    .sidebtn {
+        margin-left: 14px;
+        margin-top: 16px;
+    }
+
+    .sidetext {
+        margin-left: 14px;
+    }
+
+    .mst {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #76a7cf;
+    }
+    
+    .transparent {
+        background-color: transparent;
+    }
+
+    .sep {
+        border: 1px solid #488aff;
+        height: 1px;
+        width: calc(100% - 14px);
+        margin-top: 20px;
+        margin-left: 14px;
+    }
+
+    .error {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #ca6060;
+    }
+
+    .title {
+        color: #488aff;
+        font-weight: bold;
+        margin-left: 14px;
+    }
+
+    #projtitle {
+        font-weight: bold;
+        font-size: 4em;
+    }
+
+    .time {
+        color: #488aff;
+    }
+
+    #pagetitle {
+        margin-right: 4%;
+    }
 }

@@ -37,11 +37,18 @@ export class HomePage {
 
   }
 
+  ionViewWillEnter() {
+    this.error = '';
+  }
+
   visitProject(p: any) {
     this.nav.push(this.projectPage, {user: this.user, project: p});
   }
 
   refresh() {
+    this.ownData = [];
+    this.followData = [];
+    this.popularData = [];
     this.populatePage();
   }
 

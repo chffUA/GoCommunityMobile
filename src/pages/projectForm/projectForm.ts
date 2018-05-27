@@ -16,6 +16,7 @@ export class ProjectFormPage {
   desc: string;
   goal: number;
   date: string;
+  error: string;
   homePage = HomePage;
 
   constructor(public alertController: AlertController,
@@ -25,8 +26,13 @@ export class ProjectFormPage {
     public api: Api,
     public navParams: NavParams) {
 
+      this.error = '';
       this.user = navParams.get("user");
       this.uid = this.user.id;
+  }
+
+  ionViewWillEnter() {
+    this.error = '';
   }
 
   createT() {
@@ -37,7 +43,16 @@ export class ProjectFormPage {
   }
 
   create() {
-
+    if (this.name==null || this.desc==null || this.goal==null || this.date==null ||
+    this.name==='' || this.desc==='' || this.date==='') {
+      this.error = "Every field is required.";
+      return;
+    }
+    if (this.goal<=0) {
+      this.error = "Invalid goal amount.";
+      return;
+    }
+  this.error = '';
   }
 
 }

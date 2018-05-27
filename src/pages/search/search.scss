@@ -1,3 +1,52 @@
-page-project {
+page-search {
+
+    .center {
+        text-align: center;
+    }
+
+    .centerbtn {
+        text-align:center;
+        margin:auto;
+        width: calc(100% - 14px);
+    }
+
+    .error {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #ca6060;
+    }
+
+    #s {
+        margin-top: 30px;
+    }
+
+    #gobtn {
+        margin-left: 14px;
+        margin-top: 16px;
+    }
+
+    .title {
+        font-weight: bold;
+        margin-left: 14px;
+        color: #488aff;
+        font-weight: bold;
+    }
+
+    .projdate {
+        color: #486494;
+    }
+    
+    .projmoney {
+        color: #c57600;
+    }
+
+    .projtitle {
+        color: #000000;
+    }
 
 }

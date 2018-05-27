@@ -1,13 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Login to GoCommunity
-    </ion-title>
+  <ion-navbar>   
+    <ion-title class="center">
+        Login to GoCommunity
+        <ion-icon name="desktop"></ion-icon>
+      </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
     <form (ngSubmit)="login()">
+        <p class="center error" [hidden]="error == ''"><strong>{{error}}</strong></p>
     <ion-item>
         <ion-label color="primary" stacked>Username</ion-label>
         <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Enter username here"></ion-input>
@@ -15,10 +17,14 @@
       <ion-item>
           <ion-label color="primary" stacked>Password</ion-label>
           <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Enter password here"></ion-input>
-        </ion-item>
-  <button ion-button color="dark" type="submit">Login</button>
+        </ion-item>       
+  <button ion-button id="loginbtn" color="dark" type="submit">Login</button>
   </form>
-  <p><strong>{{error}}</strong></p>
-  <p><strong>No account? Create one for free here!</strong></p>
+  <div id="sep"></div>
+  <p class="center" id="no"><strong>No account? Create one for free </strong>
+    <ion-icon name="arrow-down"></ion-icon>
+  </p>
+  <div class="centerbtn">
   <button ion-button (click)="newAccount()" color="dark">New account</button>
+</div>
 </ion-content>

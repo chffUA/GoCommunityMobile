@@ -1,3 +1,44 @@
 page-home {
 
+    .center {
+        text-align: center;
+    }
+
+    .centerbtn {
+        text-align:center;
+        margin:auto;
+        width: calc(100% - 14px);
+    }
+
+    .error {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #ca6060;
+    }
+
+    .title {
+        color: #488aff;
+        font-weight: bold;
+    }
+
+    .projdate {
+        color: #486494;
+    }
+    
+    .projmoney {
+        color: #c57600;
+    }
+
+    .projtitle {
+        color: #000000;
+    }
+
+    .pad {
+        margin-right: 6px;
+    }
 }

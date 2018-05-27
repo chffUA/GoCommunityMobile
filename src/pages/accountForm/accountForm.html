@@ -1,25 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
+    <ion-title class="center">
       Account Creation
+      <ion-icon name="school"></ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="createT()">
+  <form (ngSubmit)="create()">
+      <p class="center error" [hidden]="error === ''"><strong>{{error}}</strong></p>
     <ion-item>
-        <ion-label color="primary" stacked>Your account's name</ion-label>
+        <ion-label color="primary" stacked id="s">Your account's visible name</ion-label>
         <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Enter your name here"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" stacked>The username you'll login with</ion-label>
+        <ion-label color="primary" stacked>The secret username you'll login with</ion-label>
         <ion-input type="text" [(ngModel)]="username" name="username" placeholder="Enter your username here"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label color="primary" stacked>Your password</ion-label>
           <ion-input type="password" [(ngModel)]="password" name="password" placeholder="Enter your password here"></ion-input>
         </ion-item>
-  <button ion-button color="dark" type="submit">Done</button>
+  <button ion-button color="dark" class="sidebtn" type="submit">Done</button>
+  <button ion-button (click)="back()" class="sndbtn" color="dark">Cancel</button>
   </form>
 </ion-content>

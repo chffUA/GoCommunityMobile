@@ -27,7 +27,7 @@ export class LoginPage {
 
       this.error = "";
       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-      
+
   }
 
   newAccount() {
@@ -35,6 +35,7 @@ export class LoginPage {
   }
  
   ionViewWillEnter() {
+    this.error = '';
     if (this.tabBarElement!=null) {
       this.tabBarElement.style.display = 'none';
     }
@@ -77,6 +78,8 @@ export class LoginPage {
             
           } else if (data.status==="false") {
             this.error = 'Could not match credentials with any existing user.';
+          } else if (data.error.message=='Not Found!')  {
+            this.error = 'User does not exist.';
           } else {
             this.error = 'Daily login attempts exceeded.';
           }

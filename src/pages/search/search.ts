@@ -32,11 +32,21 @@ export class SearchPage {
 
   }
 
+  ionViewWillEnter() {
+    this.error = '';
+  }
+
   visitProject(p: any) {
     this.nav.push(this.projectPage, {user: this.user, project: p});
   }
 
   search() {
+
+    if (this.query==null || this.query==='') {
+      this.error = "Please insert a search term.";
+      return;
+    }
+
     let loader = this.loadingCtrl.create({
       content: "Retrieving information..."
     });
@@ -47,7 +57,10 @@ export class SearchPage {
 
     this.api.getSearch(this.query).then(
       data => {
-        if (data) this.results = data.list;
+        if (data) {
+          this.results = data.list;
+          this.error = '';
+        }
         else this.error = 'Couldn\'t retrieve search results.';
       }
     );

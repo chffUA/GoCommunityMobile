@@ -1,3 +1,41 @@
 page-accountForm {
 
+    .show-back-button {
+        display: none!important;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .centerbtn {
+        text-align:center;
+        margin:auto;
+        width: calc(100% - 14px);
+    }
+
+    .error {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #ca6060;
+    }
+
+    #s {
+        margin-top: 20px;
+    }
+
+    .sidebtn {
+        margin-left: 14px;
+        margin-top: 16px;
+    }
+
+    .sndbtn {
+        margin-top: 16px;
+        background-color: rgb(133, 133, 133);
+    }
 }

@@ -1,3 +1,45 @@
 page-login {
 
+    .show-back-button {
+        display: none!important;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .centerbtn {
+        text-align:center;
+        margin:auto;
+        width: calc(100% - 14px);
+    }
+
+    .error {
+        width: 96%;
+        margin: 10px 2%;
+        padding: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 20px;
+        background-color: #ca6060;
+    }
+
+    #loginbtn {
+        margin-left: 14px;
+        margin-top: 16px;
+    }
+
+    #no {
+        width: calc(100% - 14px);
+    }
+
+    #sep {
+        border: 1px solid #488aff;
+        height: 1px;
+        width: calc(100% - 14px);
+        margin-top: 20px;
+        margin-left: 14px;
+    }
+
 }
