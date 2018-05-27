@@ -65,11 +65,9 @@ export class ProjectPage {
     this.api.postFollow({user: this.uid, project: this.p.id}).then(
       data => { 
         if (data) {
-          console.log("data",data);
           if (data.status) {
             this.api.getUser(this.uid).then(             
-              udata => {     
-                console.log("udata",udata);        
+              udata => {            
                 if (udata.id) {
                   this.error = '';
                   this.user = udata;

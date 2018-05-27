@@ -12,6 +12,7 @@ export class LoginPage {
 
   tabsPage = TabsPage;
   accountFormPage = AccountFormPage;
+  user: any;
   error: string;
   username: string;
   password: string;
@@ -25,6 +26,7 @@ export class LoginPage {
     public api: Api,
     public navParams: NavParams) {
 
+      this.user = navParams.get("user");
       this.error = "";
       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 

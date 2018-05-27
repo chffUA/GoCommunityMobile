@@ -6,12 +6,11 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class Api {
 
-  private endpoint = //"http://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
-  "http://localhost:8080/GoCommunity/api/data";
+  private endpoint = "http://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
   private header;
 
     constructor(public http: Http) {
-        console.log('Provider online');
+        //console.log('Provider online');
         this.header = new Headers();
         this.header.append('Content-Type', 'text/plain');
         this.header.append('Access-Control-Allow-Origin', '*');
@@ -20,7 +19,7 @@ export class Api {
 
     postAccount(body: any): Promise<any> {
       let url: string = this.endpoint+"/createAccount";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -29,7 +28,7 @@ export class Api {
     
     postProject(body: any): Promise<any> {
       let url: string = this.endpoint+"/createProject";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -38,7 +37,7 @@ export class Api {
 
     postFollow(body: any): Promise<any> {
       let url: string = this.endpoint+"/follow";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -47,7 +46,7 @@ export class Api {
 
     postDonate(body: any): Promise<any> {
       let url: string = this.endpoint+"/donate";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -56,7 +55,7 @@ export class Api {
 
     postMilestone(body: any): Promise<any> {
       let url: string = this.endpoint+"/addMilestone";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -65,7 +64,7 @@ export class Api {
 
     postComment(body: any): Promise<any> {
       let url: string = this.endpoint+"/addComment";
-      console.log(url);
+      //console.log(url);
       return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
@@ -74,7 +73,7 @@ export class Api {
 
     getUser(arg: any): Promise<any> {
       let url: string = this.endpoint+"/user/"+arg;
-      console.log(url);
+      //console.log(url);
       return this.http.get(url)
         .toPromise()
         .then(this.extractData)
@@ -83,7 +82,7 @@ export class Api {
 
     getProject(arg: any): Promise<any> {
         let url: string = this.endpoint+"/project/"+arg;
-        console.log(url);
+        //console.log(url);
         return this.http.get(url)
           .toPromise()
           .then(this.extractData)
@@ -92,7 +91,7 @@ export class Api {
 
     getPopular(): Promise<any> {
         let url: string = this.endpoint+"/popular";
-        console.log(url);
+        //console.log(url);
         return this.http.get(url)
         .toPromise()
         .then(this.extractData)
@@ -101,7 +100,7 @@ export class Api {
 
     getSearch(arg: any): Promise<any> {
       let url: string = this.endpoint+"/search/"+arg;
-      console.log(url);
+      //console.log(url);
       return this.http.get(url)
       .toPromise()
       .then(this.extractData)
@@ -110,7 +109,7 @@ export class Api {
 
     getLoginResult(user: string, pword: string): Promise<any> {
       let url: string = this.endpoint+"/login?user="+user+"&pword="+pword;
-      console.log(url);
+      //console.log(url);
       return this.http.get(url)
       .toPromise()
       .then(this.extractData)
