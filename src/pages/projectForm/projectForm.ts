@@ -35,6 +35,13 @@ export class ProjectFormPage {
     this.error = '';
   }
 
+  createT() {
+    console.log(this.name,this.desc,this.goal,this.date,this.uid);
+    if (this.name!=null && this.desc!=null && this.goal!=null && this.date!=null) {
+        this.nav.push(this.homePage, {user: this.user});
+      }
+  }
+
   create() {
     if (this.name==null || this.desc==null || this.goal==null || this.date==null ||
     this.name==='' || this.desc==='' || this.date==='') {
