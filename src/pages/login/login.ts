@@ -52,21 +52,15 @@ export class LoginPage {
       this.error = "Both fields are required.";
       return;
     }
-    
-    let loader = this.loadingCtrl.create({
-      content: "Retrieving information..."
-    });
-    loader.present();
 
     this.api.getLoginResult(this.username, this.password).then(
       data => {
-        loader.dismiss();
-        
+
         if (data) {
           if (data.status==="true") {
             this.api.getUser(data.id).then(
               udata => {               
-                if (udata) {
+                if (udata.id) {
                   this.nav.push(this.tabsPage, {user: udata});
                 } else {
                     this.error = 'Couldn\'t connect to the database.';
@@ -88,7 +82,6 @@ export class LoginPage {
         }
       },
       error => {
-        loader.dismiss();
         this.error = 'Couldn\'t connect to the database.';
       }
     );

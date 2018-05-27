@@ -1,25 +1,76 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class Api {
 
-  private endpoint = "http://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
+  private endpoint = //"http://deti-tqs-05.ua.pt:8181/GoCommunity-1.0-SNAPSHOT/faces/api/data";
+  "http://localhost:8080/GoCommunity/api/data";
+  private header;
 
     constructor(public http: Http) {
         console.log('Provider online');
+        this.header = new Headers();
+        this.header.append('Content-Type', 'text/plain');
+        this.header.append('Access-Control-Allow-Origin', '*');
+        this.header.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     }
 
-    /*postAccount(body: any): Promise<any> {
+    postAccount(body: any): Promise<any> {
       let url: string = this.endpoint+"/createAccount";
       console.log(url);
-      return this.http.post(url, body, {"Content-type": "application-json"})
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
-    }*/
+    }
+    
+    postProject(body: any): Promise<any> {
+      let url: string = this.endpoint+"/createProject";
+      console.log(url);
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
+
+    postFollow(body: any): Promise<any> {
+      let url: string = this.endpoint+"/follow";
+      console.log(url);
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
+
+    postDonate(body: any): Promise<any> {
+      let url: string = this.endpoint+"/donate";
+      console.log(url);
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
+
+    postMilestone(body: any): Promise<any> {
+      let url: string = this.endpoint+"/addMilestone";
+      console.log(url);
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
+
+    postComment(body: any): Promise<any> {
+      let url: string = this.endpoint+"/addComment";
+      console.log(url);
+      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }
 
     getUser(arg: any): Promise<any> {
       let url: string = this.endpoint+"/user/"+arg;

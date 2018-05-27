@@ -38,8 +38,15 @@ export class ProjectPage {
     this.populatePage();
   }
 
+  refresh() {
+    this.milestoneList = [];
+    this.commentsList = [];
+    this.populatePage();
+  }
+
   ionViewWillEnter() {
     this.error = '';
+    this.refresh();
   }
 
   isOwned() {
@@ -55,34 +62,163 @@ export class ProjectPage {
   }
 
   follow() {
-    console.log(this.uid+" follows "+this.p.id);
+    this.api.postFollow({user: this.uid, project: this.p.id}).then(
+      data => { 
+        if (data) {
+          console.log("data",data);
+          if (data.status) {
+            this.api.getUser(this.uid).then(             
+              udata => {     
+                console.log("udata",udata);        
+                if (udata.id) {
+                  this.error = '';
+                  this.user = udata;
+                } else {
+                    this.error = 'Lost connection to the database.';
+                }
+              },
+              error => {
+                this.error = 'Lost connection to the database.';
+              });
+           } else if (data.error.message == "Project does not exist.") {
+             this.error = "Project does not exist.";
+           } else if (data.error.message == "User does not exist.") {
+            this.error = "User does not exist.";
+           } else if (data.error.message == "User is project owner.") {
+             this.error = "You can't unfollow your own project!";
+           } else {
+            this.error = "Some parameters were deemed invalid.";
+           }
+        } else {
+          this.error = 'Couldn\'t connect to the database.';
+        }
+      });
   }
 
   donate() {
-    if (this.donation!=null)
-      console.log("donates "+this.donation+" to project "+this.p.id);
+    if (this.donation==null) {
+      this.error = "Please input a donation value.";
+      return;
+    }
+    if (this.donation<=0) {
+      this.error = "Please input a valid donation amount.";
+      return;
+    }
+    this.api.postDonate({amount: this.donation, project: this.p.id}).then(
+      data => { 
+        if (data) {
+          if (data.status) {
+            this.api.getProject(this.p.id).then(
+              pdata => {               
+                if (pdata.id) {
+                  this.error = '';
+                  this.p = pdata;
+                  this.refresh();
+                } else {
+                    this.error = 'Lost connection to the database.';
+                }
+              },
+              error => {
+                this.error = 'Lost connection to the database.';
+              });
+           } else if (data.error.message == "Project does not exist.") {
+             this.error = "Project does not exist.";
+           } else {
+            this.error = "Some donation parameters were deemed invalid.";
+           }
+        } else {
+          this.error = 'Couldn\'t connect to the database.';
+        }
+      });
   }
 
   addMilestone() {
-    if (this.mvalue!=null && this.mdesc!=null)
-      console.log("add mst: <"+this.mvalue+","+this.mdesc+">");
+    if (this.mvalue==null || this.mdesc==null || this.mdesc==='') {
+      this.error = "Every milestone field is required.";
+      return;
+    }
+
+    if (this.mvalue<=0) {
+        this.error = "Please input a valid milestone amount.";
+        return;
+      }
+      
+    this.api.postMilestone({amount: this.mvalue, desc: this.mdesc, project: this.p.id}).then(
+      data => { 
+        if (data) {
+          if (data.status) {
+            this.api.getProject(this.p.id).then(
+              pdata => {               
+                if (pdata.id) {
+                  this.error = '';
+                  this.p = pdata;
+                  this.refresh();
+                } else {
+                    this.error = 'Lost connection to the database.';
+                }
+              },
+              error => {
+                this.error = 'Lost connection to the database.';
+              });
+            } else if (data.error.message == "Project does not exist.") {
+              this.error = "Project does not exist.";
+            } else {
+            this.error = "Some milestone parameters were deemed invalid.";
+            }
+        } else {
+          this.error = 'Couldn\'t connect to the database.';
+        }
+      });
+
   }
 
   addComment() {
-    if (this.cmt!=null)
-      console.log("add cmt by "+this.uid+": "+this.cmt);
+    if (this.cmt==null || this.cmt==='') {
+      this.error = "Can\'t send an empty comment.";
+      return;
+    }
+
+    this.api.postComment({content: this.cmt, user: this.uid, project: this.p.id}).then(
+      data => { 
+        if (data) {
+          if (data.status) {
+            this.api.getProject(this.p.id).then(
+              pdata => {               
+                if (pdata.id) {
+                  this.error = '';
+                  this.p = pdata;
+                  this.refresh();
+                } else {
+                    this.error = 'Lost connection to the database.';
+                }
+              },
+              error => {
+                this.error = 'Lost connection to the database.';
+              });
+            } else if (data.error.message == "Project does not exist.") {
+              this.error = "Project does not exist.";
+            } else if (data.error.message == "User does not exist.") {
+              this.error = "User does not exist.";
+            } else {
+            this.error = "Some comment parameters were deemed invalid.";
+            }
+        } else {
+          this.error = 'Couldn\'t connect to the database.';
+        }
+      });
   }
 
   populatePage() {
-    this.createTimeString();    
-    this.progressBar = Math.floor(this.p.progress/this.p.goal * 100);
+    this.createTimeString();
+    if (this.p.goal==0) this.progressBar = 0;    
+    else this.progressBar = Math.floor(this.p.progress/this.p.goal * 100);
     for (let i=0;i<this.p.milestones.length;i++) {
       let obj = this.p.milestones[i];
       let key = Object.keys(obj)[0]+"€";
       let val = obj[Object.keys(obj)[0]];
       this.milestoneList.push({k: key, v: val});
     }
-    //comments after
+    this.commentsList = this.p.comments;
   }
 
   createTimeString() {

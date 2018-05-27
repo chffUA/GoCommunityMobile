@@ -63,7 +63,29 @@ back() {
         return;
       }
 
-      this.error = '';
+      this.api.postAccount({user: this.name, username:this.username, pword:this.password}).then(
+        data => { 
+          if (data) {
+            if (data.id) {
+              this.api.getUser(data.id).then(
+                udata => {               
+                  if (udata.id) {
+                    this.error = '';
+                    this.nav.push(this.tabsPage, {user: udata});
+                  } else {
+                      this.error = 'Couldn\'t connect to the database.';
+                  }
+                });
+             } else if (data.error.message == "Username already exists.") {
+               this.error = "Username already exists.";
+             } else {
+              this.error = "Some parameters were deemed invalid.";
+             }
+          } else {
+            this.error = 'Couldn\'t connect to the database.';
+          }
+        });
+
   }
 
   createT() {

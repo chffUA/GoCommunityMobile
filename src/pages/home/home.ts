@@ -31,14 +31,14 @@ export class HomePage {
       this.ownData = [];
       this.followData = [];
       this.popularData = [];
-      
-      this.populatePage();
+
       this.error = '';
 
   }
 
   ionViewWillEnter() {
     this.error = '';
+    this.refresh();
   }
 
   visitProject(p: any) {
@@ -60,30 +60,38 @@ export class HomePage {
 
     loader.present();
 
-    for (let i=0;i<this.user.owns.length;i++) {
-      this.api.getProject(this.user.owns[i]).then(
-        odata => {
-          if (odata) this.ownData.push(odata);
-          else this.error = 'Couldn\'t retrieve owned project information.';
+    this.api.getUser(this.user.id).then(
+      udata => {
+        if (udata.id) {
+          this.user = udata;
+          for (let i=0;i<this.user.owns.length;i++) {
+            this.api.getProject(this.user.owns[i]).then(
+              odata => {
+                if (odata.id) this.ownData.push(odata);
+                else this.error = 'Couldn\'t retrieve owned project information.';
+              }
+            );
+          }
+      
+          for (let i=0;i<this.user.follows.length;i++) {
+            this.api.getProject(this.user.follows[i]).then(
+              fdata => {
+                if (fdata.id) this.followData.push(fdata);
+                else this.error = 'Couldn\'t retrieve followed project information.';
+              }
+            );
+          }
+       
+          this.api.getPopular().then(
+            pdata => {
+              if (pdata.list) this.popularData = pdata.list;
+              else this.error = 'Couldn\'t retrieve popular project information.';
+            }
+          );
         }
-      );
-    }
-
-    for (let i=0;i<this.user.follows.length;i++) {
-      this.api.getProject(this.user.follows[i]).then(
-        fdata => {
-          if (fdata) this.followData.push(fdata);
-          else this.error = 'Couldn\'t retrieve followed project information.';
+        else this.error = 'Couldn\'t retrieve user information.';
         }
-      );
-    }
- 
-    this.api.getPopular().then(
-      pdata => {
-        if (pdata) this.popularData = pdata.list;
-        else this.error = 'Couldn\'t retrieve popular project information.';
-      }
-    );
+      );   
 
     loader.dismiss();
 
