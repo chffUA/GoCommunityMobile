@@ -5,7 +5,7 @@ import { ProjectPage } from '../project/project';
 import { SearchPage } from '../search/search';
 import { HomePage } from '../home/home';
 
-import { AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular'
+import { AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular';
 import { ProjectFormPage } from '../projectForm/projectForm';
 
 @Component({

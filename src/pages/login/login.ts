@@ -35,6 +35,7 @@ export class LoginPage {
   newAccount() {
     this.nav.push(this.accountFormPage);
   }
+
  
   ionViewWillEnter() {
     this.error = '';

@@ -40,6 +40,7 @@ ionViewWillEnter() {
   }
 }
 
+
 ionViewWillLeave() {
   if (this.tabBarElement!=null) {
     this.tabBarElement.style.display = 'flex';

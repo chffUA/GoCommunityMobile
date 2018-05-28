@@ -36,6 +36,7 @@ export class SearchPage {
     this.error = '';
   }
 
+
   visitProject(p: any) {
     this.nav.push(this.projectPage, {user: this.user, project: p});
   }

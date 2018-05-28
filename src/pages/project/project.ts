@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Api } from '../../providers/api';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { HomePage } from '../../pages/home/home';
-import { AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular'
+import { ViewController, AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular'
 
 @Component({
   selector: 'page-project',
@@ -25,6 +25,7 @@ export class ProjectPage {
 
   constructor(public alertController: AlertController,
     public nav: NavController,
+    public viewCtrl: ViewController,
     public loadingCtrl: LoadingController,
     public platform: Platform,
     public api: Api,

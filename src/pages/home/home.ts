@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Api } from '../../providers/api';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { ProjectPage } from '../../pages/project/project';
+import { LoginPage } from '../../pages/login/login';
 import { AlertController, LoadingController, NavController, Platform, NavParams } from 'ionic-angular'
 
 @Component({
@@ -31,7 +32,6 @@ export class HomePage {
       this.ownData = [];
       this.followData = [];
       this.popularData = [];
-
       this.error = '';
 
   }
