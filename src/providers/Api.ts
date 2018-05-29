@@ -12,7 +12,7 @@ export class Api {
     constructor(public http: Http) {
         //console.log('Provider online');
         this.header = new Headers();
-        this.header.append('Content-Type', 'text/plain');
+        this.header.append('Content-Type', 'application/json');
         //this.header.append('Access-Control-Allow-Origin', '*');
         //this.header.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
     }
