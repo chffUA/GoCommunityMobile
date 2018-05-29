@@ -20,7 +20,7 @@ export class Api {
     postAccount(body: any): Promise<any> {
       let url: string = this.endpoint+"/createAccount";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
@@ -29,7 +29,7 @@ export class Api {
     postProject(body: any): Promise<any> {
       let url: string = this.endpoint+"/createProject";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
@@ -38,7 +38,7 @@ export class Api {
     postFollow(body: any): Promise<any> {
       let url: string = this.endpoint+"/follow";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
@@ -47,7 +47,7 @@ export class Api {
     postDonate(body: any): Promise<any> {
       let url: string = this.endpoint+"/donate";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
@@ -56,7 +56,7 @@ export class Api {
     postMilestone(body: any): Promise<any> {
       let url: string = this.endpoint+"/addMilestone";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
@@ -65,7 +65,7 @@ export class Api {
     postComment(body: any): Promise<any> {
       let url: string = this.endpoint+"/addComment";
       //console.log(url);
-      return this.http.post(url, JSON.stringify(body), {"headers":this.header})
+      return this.http.post(url, body, {"headers":this.header})
         .toPromise()
         .then(this.extractData)
         .catch(this.handleError);
