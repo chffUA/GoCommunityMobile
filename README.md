@@ -8,6 +8,6 @@ Versão mobile do [GoCommunity](https://github.com/chffUA/GoCommunity) e consumi
 
 Realizado em Ionic 3 (v3.20.0) para Android, iOS e PC.
 
-##Como correr
+## Como correr
 
 Comando "ionic serve" na pasta principal do projeto.
