@@ -47,7 +47,7 @@ export class ProjectFormPage {
       return;
     }
     
-    this.api.postProject({name: this.name, desc: this.desc, goal: this.goal, date: this.date, owner: this.uid}).then(
+    this.api.postProject({name: this.name, desc: this.desc, goal: this.goal, date: this.date, owner: this.uid.toString()}).then(
       data => { 
         if (data) {
           if (data.id) {
