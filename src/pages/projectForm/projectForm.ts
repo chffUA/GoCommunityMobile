@@ -46,7 +46,7 @@ export class ProjectFormPage {
       this.error = "Invalid goal amount.";
       return;
     }
-  
+    
     this.api.postProject({name: this.name, desc: this.desc, goal: this.goal, date: this.date, owner: this.uid}).then(
       data => { 
         if (data) {

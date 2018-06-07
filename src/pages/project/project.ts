@@ -63,7 +63,7 @@ export class ProjectPage {
   }
 
   follow() {
-    this.api.postFollow({user: this.uid, project: this.p.id}).then(
+    this.api.postFollow({user: this.uid.toString(), project: this.p.id.toString()}).then(
       data => { 
         if (data) {
           if (data.status) {
@@ -103,7 +103,7 @@ export class ProjectPage {
       this.error = "Please input a valid donation amount.";
       return;
     }
-    this.api.postDonate({amount: this.donation, project: this.p.id}).then(
+    this.api.postDonate({amount: this.donation.toString(), project: this.p.id.toString()}).then(
       data => { 
         if (data) {
           if (data.status) {
@@ -142,7 +142,7 @@ export class ProjectPage {
         return;
       }
       
-    this.api.postMilestone({amount: this.mvalue, desc: this.mdesc, project: this.p.id}).then(
+    this.api.postMilestone({amount: this.mvalue.toString(), desc: this.mdesc, project: this.p.id.toString()}).then(
       data => { 
         if (data) {
           if (data.status) {
@@ -177,7 +177,7 @@ export class ProjectPage {
       return;
     }
 
-    this.api.postComment({content: this.cmt, user: this.uid, project: this.p.id}).then(
+    this.api.postComment({content: this.cmt, user: this.uid.toString(), project: this.p.id.toString()}).then(
       data => { 
         if (data) {
           if (data.status) {
